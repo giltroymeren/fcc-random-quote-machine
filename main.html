@@ -35,7 +35,6 @@
             // http://stackoverflow.com/a/18775368
             document.addEventListener('DOMContentLoaded', function(event) {
                 var myUrl = "http://quotes.stormconsultancy.co.uk/quotes.json";
-                var data = [];
 
                 var getNewQuote = function(array) {
                     return array[Math.floor(Math.random() * (array.length + 1))];
@@ -58,9 +57,17 @@
                     request.send();
                 };
 
-                getFile(function(result) {
-                    setNewQuote(getNewQuote(JSON.parse(result)));
-                });
+                var callGetFile = function() {
+                    getFile(function(result) {
+                        setNewQuote(getNewQuote(JSON.parse(result)));
+                    });
+                };
+
+                callGetFile();
+
+                document.getElementById("submit").onclick = function(){
+                    callGetFile();
+                }
             });
         </script>
     </body>
