@@ -1,0 +1,67 @@
+<!DOCTYPE HTML>
+<!--
+    FreeCodeCamp: Build a Random Quote Machine
+    https://www.freecodecamp.com/challenges/build-a-random-quote-machine
+-->
+<html>
+    <head>
+        <title>Random Programming Quotes</title>
+        <meta charset="utf-8" />
+    </head>
+
+    <body>
+        <section>
+            <div id="quote">
+                <blockquote>
+                    <p id="quote-text"></p>
+                    <cite id="quote-cite"></cite>
+                </blockquote>
+            </div>
+            <div id="form">
+                <div class=".pull-left">
+                </div>
+                <div class="pull-right">
+                    <button id="submit">
+                        New quote
+                    </button>
+                </div>
+            </div>
+        </section>
+        <footer>
+            <p>by <a href="#">giltroymeren</a></p>
+        </footer>
+
+        <script type="text/javascript">
+            // http://stackoverflow.com/a/18775368
+            document.addEventListener('DOMContentLoaded', function(event) {
+                var myUrl = "http://quotes.stormconsultancy.co.uk/quotes.json";
+                var data = [];
+
+                var getNewQuote = function(array) {
+                    return array[Math.floor(Math.random() * (array.length + 1))];
+                }
+
+                var setNewQuote = function(array) {
+                    document.getElementById("quote-text").innerHTML = array["quote"];
+                    document.getElementById("quote-cite").innerHTML = array["author"];
+                }
+
+                function getFile(callback) {
+                    // http://stackoverflow.com/a/16825593
+                    var request = new XMLHttpRequest();
+                    request.onload = function() {
+                        if(request.readyState === 4 && request.status === 200) {
+                            callback(request.responseText);
+                        }
+                    };
+                    request.open("GET", "http://cors.io/?u=" + myUrl, true);
+                    request.send();
+                };
+
+                getFile(function(result) {
+                    setNewQuote(getNewQuote(JSON.parse(result)));
+                });
+            });
+        </script>
+    </body>
+</html>
