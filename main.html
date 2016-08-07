@@ -9,6 +9,7 @@
         <meta charset="utf-8" />
 
         <script src="https://use.fontawesome.com/2127f29eea.js"></script>
+        <script id="tumblr-js" async src="https://assets.tumblr.com/share-button.js"></script>
     </head>
 
     <body>
@@ -76,13 +77,20 @@
 
                 document.getElementById("submit").onclick = function() {
                     callGetFile();
-                }
+                };
 
                 document.getElementById("twitter").onclick = function() {
-                    this.href="https://twitter.com/intent/tweet?hashtags=quotes,programming& " +
-                    "related=freecodecamp&text=\"" + currentQuote + "\" - " +
+                    this.href="https://twitter.com/intent/tweet?hashtags=quotes,programming," +
+                    "freecodecamp&related=freecodecamp&text=\"" + currentQuote + "\" - " +
                     currentCite;
-                }
+                };
+
+                document.getElementById("tumblr").onclick = function() {
+                    this.href="https://www.tumblr.com/widgets/share/tool?" +
+                    "data-posttype=quote&data-tags=quotes,freecodecamp,programming&" +
+                    "data-content=" + encodeURIComponent(currentQuote) +
+                    "&data-caption=" + encodeURIComponent(currentCite);
+                };
             });
         </script>
     </body>
