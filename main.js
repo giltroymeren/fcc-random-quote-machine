@@ -31,7 +31,9 @@ document.addEventListener('DOMContentLoaded', function(event) {
         "#8fb2b9","#739c8e","#63805b","#658052","#436337"];
         var rand = Math.floor(Math.random() * (colors.length + 1));
         document.querySelector("body").style.backgroundColor = colors[rand];
-
+        document.getElementById("quote").style.color = colors[rand];
+        document.getElementById("twitter").style.backgroundColor = colors[rand];
+        document.getElementById("tumblr").style.backgroundColor = colors[rand];
     }
 
     var callGetFile = function() {
