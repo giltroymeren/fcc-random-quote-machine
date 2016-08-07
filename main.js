@@ -26,6 +26,14 @@ document.addEventListener('DOMContentLoaded', function(event) {
         request.send();
     };
 
+    var changeToRandomColor = function() {
+        var colors = ["#073a80","#0846d5","#1354f2","#1e3fff","#3f2dff","#b352ff","#9fc8d5",
+        "#8fb2b9","#739c8e","#63805b","#658052","#436337"];
+        var rand = Math.floor(Math.random() * (colors.length + 1));
+        document.querySelector("body").style.backgroundColor = colors[rand];
+
+    }
+
     var callGetFile = function() {
         getFile(function(result) {
             setNewQuote(getNewQuote(JSON.parse(result)));
@@ -33,9 +41,11 @@ document.addEventListener('DOMContentLoaded', function(event) {
     };
 
     callGetFile();
+    changeToRandomColor();
 
     document.getElementById("submit").onclick = function() {
         callGetFile();
+        changeToRandomColor();
     };
 
     document.getElementById("twitter").onclick = function() {
