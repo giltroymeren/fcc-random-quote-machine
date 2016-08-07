@@ -7,6 +7,8 @@
     <head>
         <title>Random Programming Quotes</title>
         <meta charset="utf-8" />
+
+        <script src="https://use.fontawesome.com/2127f29eea.js"></script>
     </head>
 
     <body>
@@ -19,6 +21,10 @@
             </div>
             <div id="form">
                 <div class=".pull-left">
+                    <a href="#" id="twitter"><i class="fa fa-twitter" aria-hidden="true"></i>
+</a>
+                    <a href="#" id="tumblr"><i class="fa fa-tumblr" aria-hidden="true"></i>
+</a>
                 </div>
                 <div class="pull-right">
                     <button id="submit">
@@ -35,14 +41,17 @@
             // http://stackoverflow.com/a/18775368
             document.addEventListener('DOMContentLoaded', function(event) {
                 var myUrl = "http://quotes.stormconsultancy.co.uk/quotes.json";
+                var currentQuote = currentCite = "";
 
                 var getNewQuote = function(array) {
                     return array[Math.floor(Math.random() * (array.length + 1))];
                 }
 
                 var setNewQuote = function(array) {
-                    document.getElementById("quote-text").innerHTML = array["quote"];
-                    document.getElementById("quote-cite").innerHTML = array["author"];
+                    currentQuote = array["quote"];
+                    currentCite = array["author"];
+                    document.getElementById("quote-text").innerHTML = currentQuote;
+                    document.getElementById("quote-cite").innerHTML = currentCite;
                 }
 
                 function getFile(callback) {
@@ -65,8 +74,14 @@
 
                 callGetFile();
 
-                document.getElementById("submit").onclick = function(){
+                document.getElementById("submit").onclick = function() {
                     callGetFile();
+                }
+
+                document.getElementById("twitter").onclick = function() {
+                    this.href="https://twitter.com/intent/tweet?hashtags=quotes,programming& " +
+                    "related=freecodecamp&text=\"" + currentQuote + "\" - " +
+                    currentCite;
                 }
             });
         </script>
